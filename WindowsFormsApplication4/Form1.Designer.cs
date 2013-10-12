@@ -70,6 +70,7 @@
             this.remove.TabIndex = 1;
             this.remove.Text = "Delete";
             this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
             // toDoListDataSet
             // 

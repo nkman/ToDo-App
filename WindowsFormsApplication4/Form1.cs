@@ -39,5 +39,11 @@ namespace WindowsFormsApplication4
             Form2 newf2 = new Form2();
             newf2.ShowDialog();
         }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            Delete Del = new Delete();
+            Del.ShowDialog();
+        }
     }
 }
