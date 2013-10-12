@@ -44,6 +44,7 @@ namespace WindowsFormsApplication4
         {
             Delete Del = new Delete();
             Del.ShowDialog();
+            
         }
     }
 }

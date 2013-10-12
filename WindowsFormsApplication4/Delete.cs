@@ -40,7 +40,14 @@ namespace WindowsFormsApplication4
 
             coma.ExecuteNonQuery();
             con.Close();
+            /*Form1 f = new Form1();
+            f.ShowDialog();*/
             return;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
