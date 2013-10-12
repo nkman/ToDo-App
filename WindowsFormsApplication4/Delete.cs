@@ -34,9 +34,9 @@ namespace WindowsFormsApplication4
                 Console.WriteLine(ex.ToString());
                 return;
             }
-            SqlCommand cmd = new SqlCommand("SELECT count(*) FROM check_assignment_of_works", con);
-            int total = (Int32)cmd.ExecuteScalar() + 1;
-            SqlCommand coma = new SqlCommand("", con);
+            int varia;
+            int.TryParse(deletebutton.Text, out varia);
+            SqlCommand coma = new SqlCommand("DELETE check_Assignment_of_works WHERE Id = '"+varia+"'", con);
 
             coma.ExecuteNonQuery();
             con.Close();
