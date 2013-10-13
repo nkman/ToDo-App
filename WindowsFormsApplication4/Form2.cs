@@ -29,9 +29,9 @@ namespace WindowsFormsApplication4
                 Console.WriteLine(ex.ToString());
                 return;
             }
-            SqlCommand cmd = new SqlCommand("SELECT count(*) FROM check_assignment_of_works", con);
+            SqlCommand cmd = new SqlCommand("SELECT count(*) FROM check_Assignment_of_works", con);
             int total = (Int32)cmd.ExecuteScalar() + 1;
-            SqlCommand coma = new SqlCommand("INSERT INTO check_assignment_of_works (Id,Work_Assigned,Status)" + " VALUES ('"+total+"','"+work.Text+"','No')",con);
+            SqlCommand coma = new SqlCommand("INSERT INTO check_Assignment_of_works (Id,Work_Assigned,Status)" + " VALUES ('"+total+"','"+work.Text+"','No')",con);
             
             coma.ExecuteNonQuery();
             con.Close();
