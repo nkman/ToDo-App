@@ -41,14 +41,16 @@ namespace WindowsFormsApplication4
             SqlCommand cmd = new SqlCommand("SELECT count(*) FROM check_Assignment_of_works", con);
             int total = (Int32)cmd.ExecuteScalar() + 1;
             coma.ExecuteNonQuery();
-            for (int i = varia+1; i < total; i++)
+            for (int i = varia; i < total; i++)
             {
-                SqlCommand commandis = new SqlCommand("SELECT * FROM check_Assignment_of_works WHERE Id = '" + varia + "'", con);
-                DataSet dataset = new DataSet();
+                //SqlCommand commandis = new SqlCommand("SELECT * FROM check_Assignment_of_works WHERE Id = '" + varia + "'", con);
+                SqlCommand update = new SqlCommand("UPDATE check_Assignment_of_works SET Id = '"+i+"' WHERE Id='"+(i+1)+"'",con);
+                update.ExecuteNonQuery();
+                /*DataSet dataset = new DataSet();
                 SqlDataAdapter adapter = new SqlDataAdapter(commandis);
                 adapter.Fill(dataset);
-                dataset.Tables[0].Rows[0][i] = i - 1;
-                //SqlCommand comma = new SqlCommand("Modify Id in each row");         //Modification
+                dataset.Tables[0].Rows[1][i] = i - 1;
+                //SqlCommand comma = new SqlCommand("Modify Id in each row");         //Modification */
             }
             
             con.Close();
