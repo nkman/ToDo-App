@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace WindowsFormsApplication4
@@ -24,7 +25,7 @@ namespace WindowsFormsApplication4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string address = "Data Source=NAIRITYA\\HACKSQL;Initial Catalog=nkman_todo_db;Integrated Security=True;Pooling=False";
+            string address = ConfigurationManager.ConnectionStrings["connection"].ToString();
             SqlConnection con = new SqlConnection(address);
             try
             {
@@ -43,25 +44,18 @@ namespace WindowsFormsApplication4
             coma.ExecuteNonQuery();
             for (int i = varia; i < total; i++)
             {
-                //SqlCommand commandis = new SqlCommand("SELECT * FROM check_Assignment_of_works WHERE Id = '" + varia + "'", con);
                 SqlCommand update = new SqlCommand("UPDATE check_Assignment_of_works SET Id = '"+i+"' WHERE Id='"+(i+1)+"'",con);
                 update.ExecuteNonQuery();
-                /*DataSet dataset = new DataSet();
-                SqlDataAdapter adapter = new SqlDataAdapter(commandis);
-                adapter.Fill(dataset);
-                dataset.Tables[0].Rows[1][i] = i - 1;
-                //SqlCommand comma = new SqlCommand("Modify Id in each row");         //Modification */
             }
             
             con.Close();
-            /*Form1 f = new Form1();
-            f.ShowDialog();*/
+            MessageBox.Show("Row '"+varia+"' hs been Deleted");
             return;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string address = "Data Source=NAIRITYA\\HACKSQL;Initial Catalog=nkman_todo_db;Integrated Security=True;Pooling=False";
+            string address = ConfigurationManager.ConnectionStrings["connection"].ToString();
             SqlConnection con = new SqlConnection(address);
             try
             {
@@ -74,8 +68,7 @@ namespace WindowsFormsApplication4
             }
             int num;
             int.TryParse(deletebutton.Text, out num);
-            SqlCommand coma = new SqlCommand("Set Status from no to yes where Id = deletebutton.text", con);            //Modification;
-
+            SqlCommand coma = new SqlCommand("UPDATE check_Assignment_of_works SET Status = 'Done' WHERE Id='" + num + "'", con);            
             coma.ExecuteNonQuery();
             con.Close();
             return;

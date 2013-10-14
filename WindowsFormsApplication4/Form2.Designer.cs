@@ -60,6 +60,7 @@
             this.fuck.TabIndex = 3;
             this.fuck.Text = "Cancel";
             this.fuck.UseVisualStyleBackColor = true;
+            this.fuck.Click += new System.EventHandler(this.fuck_Click);
             // 
             // Form2
             // 

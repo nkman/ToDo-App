@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WindowsFormsApplication4
 {
@@ -18,7 +19,7 @@ namespace WindowsFormsApplication4
 
         private void AddButt_Click(object sender, EventArgs e)
         {
-            string address = "Data Source=NAIRITYA\\HACKSQL;Initial Catalog=nkman_todo_db;Integrated Security=True;Pooling=False";
+            string address = ConfigurationManager.ConnectionStrings["connection"].ToString();
             SqlConnection con = new SqlConnection(address);
             try
             {
@@ -31,7 +32,7 @@ namespace WindowsFormsApplication4
             }
             SqlCommand cmd = new SqlCommand("SELECT count(*) FROM check_Assignment_of_works", con);
             int total = (Int32)cmd.ExecuteScalar() + 1;
-            SqlCommand coma = new SqlCommand("INSERT INTO check_Assignment_of_works (Id,Work_Assigned,Status)" + " VALUES ('"+total+"','"+work.Text+"','No')",con);
+            SqlCommand coma = new SqlCommand("INSERT INTO check_Assignment_of_works (Id,Work_Assigned,Status)" + " VALUES ('"+total+"','"+work.Text+"','Not Done')",con);
             
             coma.ExecuteNonQuery();
             con.Close();
@@ -41,6 +42,12 @@ namespace WindowsFormsApplication4
         private void work_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void fuck_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();
+            //Environment.Exit(0);
         }
     }
 }
